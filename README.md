@@ -41,17 +41,17 @@ AQ54 est une application web conçue pour la visualisation et la gestion des don
 ### Étapes d'installation
 
 1. Cloner le dépôt :
-   git clone https://github.com/<ton-nom-utilisateur>/AQ54.git
-   cd AQ54
+   git clone https://github.com/DossoAboubakar/AQ54_PROJECT
+   cd AQ54_PROJECT
 
 2. Installation des dépendances :
    Pour le back-end :
-   cd backend
+   cd BACKEND_API_AQ54
    npm install
    
 
    Pour le front-end :
-   cd frontend
+   cd FRONTEND_AQ54
    npm install
    
 
@@ -72,16 +72,16 @@ AQ54 est une application web conçue pour la visualisation et la gestion des don
 4. Lancer l'application :
 
    Lancer Docker pour conteneuriser l'application :
-      docker-compose up --build
+      docker compose up --build
   
 
    Ou démarrer manuellement les serveurs :
    - Démarrer le back-end :
-     cd backend
+     cd BACKEND_API_AQ54
      npm run start:dev
      
 
-   - Démarrer le front-end :
+   - Démarrer le FRONTEND_AQ54 :
      cd frontend
      npm run start
      
