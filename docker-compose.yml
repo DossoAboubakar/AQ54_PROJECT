@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    container_name: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Exposez le port 5433 pour le service db
+    networks:
+      - my-network
+
+  app:
+    build:
+      context: ./BACKEND_API_AQ54
+      dockerfile: Dockerfile
+    container_name: nest-docker-postgres
+    environment:
+      - PORT=3001
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/aq54?schema=public  # Modifiez ici pour utiliser le nom du service
+      - JWT_SECRET=edb49326f1d9fa9e1a37d655d4f330431672b9bb2cf1447f8c64a410b4d58067
+    ports:
+      - '3001:3001'
+    depends_on:
+      - db
+    volumes:
+      - ./BACKEND_API_AQ54/src:/app/src
+    networks:
+      - my-network
+
+  frontend:
+    build:
+      context: ./FRONTEND_AQ54  
+      dockerfile: Dockerfile
+    container_name: romantic-black
+    ports:
+      - '3000:3000'
+    depends_on:
+      - app
+    networks:
+      - my-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    ports:
+      - '5050:80'
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
