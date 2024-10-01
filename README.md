@@ -41,7 +41,7 @@ AQ54 est une application web conçue pour la visualisation et la gestion des don
 ### Étapes d'installation
 
 1. Cloner le dépôt :
-   git clone https://github.com/DossoAboubakar/AQ54_PROJECT
+   git clone https://github.com/DossoAboubakar/AQ54_PROJECT.git
    cd AQ54_PROJECT
 
 2. Installation des dépendances :
