@@ -21,7 +21,7 @@ export class SensorDataByRangeService {
     station: string,
     firstDate: string,
     lastDate: string,
-  ): Promise<any> { // Retourne une promesse
+  ): Promise<any> { 
     const apiUrl = `https://airqino-api.magentalab.it/getRange/${station}/${firstDate}/${lastDate}`;
 
     return new Promise((resolve, reject) => {
@@ -33,8 +33,7 @@ export class SensorDataByRangeService {
           );
 
           const dataTable = response.data['raw_data'];
-          const savedData = []; // Pour stocker les données enregistrées
-
+          const savedData = []; 
           for (const data of dataTable) {
             const sensorData: SensorDataByRangeEntity = this.sensorDataByRangeRepository.create({
               date: data.utc_timestamp,
@@ -54,12 +53,11 @@ export class SensorDataByRangeService {
 
             });
 
-            // Enregistrement dans la base de données
+           
             await this.sensorDataByRangeRepository.save(sensorData);
-            savedData.push(sensorData); // Ajouter aux données sauvegardées
+            savedData.push(sensorData); 
           }
 
-          // Résoudre la promesse avec les données sauvegardées
           resolve(savedData);
         },
         error: (error) => {
@@ -67,7 +65,7 @@ export class SensorDataByRangeService {
             "Erreur lors de l'appel pour les valeurs actuelles:",
             error,
           );
-          reject(error); // Rejeter la promesse en cas d'erreur
+          reject(error); 
         },
       });
     });

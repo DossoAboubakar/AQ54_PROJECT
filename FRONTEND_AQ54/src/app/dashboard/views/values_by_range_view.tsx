@@ -25,8 +25,8 @@ interface SensorData {
 export default function SensorDataByRangeView() {
   const [sensorData, setSensorData] = useState<SensorData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0]); // yyyy-mm-dd
-  const [endDate, setEndDate] = useState<string>(new Date().toISOString().split('T')[0]); // yyyy-mm-dd
+  const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0]); 
+  const [endDate, setEndDate] = useState<string>(new Date().toISOString().split('T')[0]); 
   const [selectedStation, setSelectedStation] = useState('SMART188');
 
   const fetchSensorData = async (station: string, start: string, end: string) => {
@@ -47,7 +47,7 @@ export default function SensorDataByRangeView() {
 
   const formatDateTime = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleString('fr-FR'); // Format français (jj/mm/aaaa hh:mm)
+    return date.toLocaleString('fr-FR'); 
   };
 
   const getButtonStyle = (station: string) => ({
@@ -92,7 +92,7 @@ export default function SensorDataByRangeView() {
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             style={{
-              backgroundColor: 'black', // Couleur de fond en noir
+              backgroundColor: 'black',
               color: 'white',
               padding: '10px',
               borderRadius: '5px',
@@ -126,10 +126,9 @@ export default function SensorDataByRangeView() {
               stripedRows 
               filterDisplay="row" 
             >
-              {/* Column for the row number */}
               <Column
                 header="No"
-                body={(_, { rowIndex }) => rowIndex + 1}  // Display the row index starting from 1
+                body={(_, { rowIndex }) => rowIndex + 1} 
                 style={{ minWidth: '100px' }}
               />
               <Column 

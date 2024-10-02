@@ -27,7 +27,7 @@ export default function Register() {
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            router.push('/dashboard'); // Redirection après inscription réussie
+            router.push('/dashboard'); 
         } catch (error) {
             setError("Échec de l'inscription. Vérifiez vos identifiants.");
         } finally {

@@ -22,11 +22,10 @@ interface SensorAverageData {
 export default function SensorAverageDataView() {
   const [sensorData, setSensorData] = useState<SensorAverageData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedStation, setSelectedStation] = useState<string>('283164601'); // Default to SMART188
+  const [selectedStation, setSelectedStation] = useState<string>('283164601'); 
   const [error, setError] = useState<string | null>(null);
   const [timeoutError, setTimeoutError] = useState<boolean>(false);
 
-  // Méthode pour envoyer les données à votre backend pour les stocker
   const storeDataInDb = async (data: SensorAverageData[]) => {
     try {
       await axios.post('http://localhost:3000/api/store-sensor-data', data);
@@ -52,10 +51,9 @@ export default function SensorAverageDataView() {
 
     try {
       const response = await Promise.race([axios.get<SensorAverageData[]>(url), timeout]) as { data: SensorAverageData[] };
-      const limitedData = response.data.slice(0, 50); // Limitez les données à 50 éléments
+      const limitedData = response.data.slice(0, 50); 
       setSensorData(limitedData);
 
-      // Sauvegarder les données dans la base de données
       storeDataInDb(limitedData);
       
     } catch (error) {
