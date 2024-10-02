@@ -8,8 +8,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
-      - "5433:5432"  # Exposez le port 5433 pour le service db
-    networks:
+      - "5433:5432"  
       - my-network
 
   app:
@@ -19,7 +18,7 @@ services:
     container_name: nest-docker-postgres
     environment:
       - PORT=3001
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/aq54?schema=public  # Modifiez ici pour utiliser le nom du service
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/aq54?schema=public  
       - JWT_SECRET=edb49326f1d9fa9e1a37d655d4f330431672b9bb2cf1447f8c64a410b4d58067
     ports:
       - '3001:3001'

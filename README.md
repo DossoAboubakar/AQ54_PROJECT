@@ -1,5 +1,3 @@
-
-
 # AQ54
 
 AQ54 est une application web conçue pour la visualisation et la gestion des données de capteurs environnementaux. Elle permet de récupérer, traiter, et afficher des données en temps réel à partir de capteurs via des API externes, tout en offrant une interface utilisateur intuitive pour interagir avec les stations de surveillance.
@@ -18,94 +16,90 @@ AQ54 est une application web conçue pour la visualisation et la gestion des don
 
 ### Frontend
 
-- JavaScript / JSX
-- Framework :NextJS 
+- Framework :NextJS
 - Appels API :Axios/HttpService
 
 ### Backend
 
-- Node.js / NestJS
-- Base de données  POSTGRES
+- NestJS
 - ORM : TypeORM
-- Conteneurisation : Docker
+
+### Base de donnée
+
+- Base de données POSTGRES
+
+### Contenurisation:
+
+- docker et docker-compose
 
 ## Installation
 
 ### Pré-requis
 
-- Docker
-- Node.js (v14+)
+- NodeJS
 - Postgres
-
+- Docker et Docker coompose
 
 ### Étapes d'installation
 
 1. Cloner le dépôt :
    git clone https://github.com/DossoAboubakar/AQ54_PROJECT.git
-   cd AQ54_PROJECT
+   cd FRONTEND_AQ54
 
-2. Installation des dépendances :
+2. Configurer les variables d'environnement :
+
+   Créer un fichier .env dans les dossiers frontend et backend avec les paramètres suivants :
+
    Pour le back-end :
-   cd BACKEND_API_AQ54
-   npm install
-   
+
+   ```bash
+   APP_PORT=3001 DB_HOST=db
+   DB_PORT=5432
+   DB_USERNAME=postgres DB_PASSWORD=postgres DB_NAME=AQ54_DB
+   ```
 
    Pour le front-end :
-   cd FRONTEND_AQ54
-   npm install
-   
 
-3. Configurer les variables d'environnement :
+   ```bash
+      AVERAGE_DATA_URL=http://localhost:3001/api/stationAverageData
+   ```
 
-   Créer un fichier `.env` dans les dossiers `frontend` et `backend` avec les paramètres suivants :
-
-   - Pour le back-end :
-      APP_PORT=3001
-      DB_HOST=db          
-      DB_PORT=5432        
-      DB_USERNAME=postgres
-      DB_PASSWORD=postgres 
-      DB_NAME=AQ54_DB 
-
-   - Pour le front-end : none
-
-4. Lancer l'application :
+3. Lancer l'application :
 
    Lancer Docker pour conteneuriser l'application :
-      docker compose up --build
-  
+   S'assurer d'etre a la racine du projet : AQ54_PROJECT , 
+   ```bash
+   docker compose up
+   ```
 
+4. Accéder à l'application :
+
+   Ouvrez votre navigateur et accédez aux addresses du frontend par le conteneur docker.
    Ou démarrer manuellement les serveurs :
-   - Démarrer le back-end :
-     cd BACKEND_API_AQ54
-     npm run start:dev
-     
 
-   - Démarrer le FRONTEND_AQ54 :
-     cd frontend
-     npm run start
-     
+   Démarrer le back-end : cd BACKEND_API_AQ54 npm run start:dev
 
-5. Accéder à l'application :
-
-   Ouvrez votre navigateur et accédez aux addresses du frontend et du backend renvoyées par le conteneur docker.
+   Démarrer le FRONTEND_AQ54 : cd frontend npm run start
 
 ## API Endpoints
 
-- GET : /api/stationAverageData/:stationId : Récupère les données moyennes des capteurs pour une station donnée.
-- GET : /api/defaultSensorsValues/station : Récupère les données de capteurs ( Données selon le jour selectionné ) .
-- GET : /api/sensorDataByRange/station/firstDate/lastDate : Récupère les données de capteurs selon un interval de jour choisi.
-- GET : /api/sensorDataByDay/station/date : Récupère les données de capteurs selon le jour choisi.
+Consulté le swagger disponible via le liens suivant
+http://localhost:3001/api
 
 ## Structure des Données de Capteurs
 
 Les données des capteurs incluent les champs suivants :
-- AUX1, AUX2, AUX3
-- co (monoxyde de carbone)
-- extT (température extérieure)
-- intT (température intérieure)
-- no2 (dioxyde d'azote)
-- o3 (ozone)
-- pm10, pm25 (particules fines)
-- rh (humidité relative)
-- utc_timestamp
+
+AUX1, AUX2, AUX3
+co (monoxyde de carbone)
+extT (température extérieure)
+intT (température intérieure)
+no2 (dioxyde d'azote)
+o3 (ozone)
+pm10, pm25 (particules fines)
+rh (humidité relative)
+utc_timestamp
+
+```
+
+```
